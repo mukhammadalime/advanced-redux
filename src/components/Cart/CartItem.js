@@ -3,14 +3,15 @@ import { cartActions } from "../../store/cart-slice";
 import classes from "./CartItem.module.css";
 
 const CartItem = (props) => {
-  const { title, quantity, total, price, id } = props.item;
   const dispatch = useDispatch();
 
-  const removeItem = (id) => {
+  const { title, quantity, total, price, id } = props.item;
+
+  const removeItem = () => {
     dispatch(cartActions.removeItemFromCart({ id }));
   };
 
-  const addItem = (item) => {
+  const addItem = () => {
     dispatch(cartActions.addItemToCart({ id, title, price }));
   };
 
@@ -28,8 +29,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button onClick={removeItem.bind(null, id)}>-</button>
-          <button onClick={addItem.bind(null, props.item)}>+</button>
+          <button onClick={removeItem}>-</button>
+          <button onClick={addItem}>+</button>
         </div>
       </div>
     </li>
